@@ -1,6 +1,10 @@
-namespace App{
-   // Project Item Class
-    export class ProjectItem extends Component<HTMLUListElement, HTMLElement> implements Draggable {
+// Project Item Class
+import { Draggable } from '../models/drag-and-drop.js';
+import { Project } from '../models/project.js';
+import { Component } from '../components/base-component.js';
+import { autobind } from '../decorators/autobind.js';
+
+export class ProjectItem extends Component<HTMLUListElement, HTMLElement> implements Draggable {
         private project: Project;
 
         get persons() {
@@ -40,5 +44,4 @@ namespace App{
             this.element.querySelector('h3')!.textContent = `${this.persons} assigned.`;
             this.element.querySelector('p')!.textContent = this.project.description;
         }
-    }
 }

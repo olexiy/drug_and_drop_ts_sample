@@ -1,17 +1,17 @@
-/* eslint-disable no-useless-constructor */
-// eslint-disable-next-line max-classes-per-file
-namespace App{
-  // Projec State Management
-  type Listener<T> = (items: T[]) => void;
+/* eslint-disable max-classes-per-file */
+// Projec State Management
+import { Project, ProjectStatus } from '../models/project.js';
 
-  class State<T> {
+type Listener<T> = (items: T[]) => void;
+
+class State<T> {
     protected listeners: Listener<T>[] = [];
 
     addListener(listenerFn: Listener<T>) {
       this.listeners.push(listenerFn);
     }
-  }
- export class ProjectState extends State<Project> {
+}
+export class ProjectState extends State<Project> {
     private projects: Project[] = [];
 
     private static instance: ProjectState;
@@ -53,7 +53,5 @@ namespace App{
         listenerFn(this.projects.slice());
       }
     }
- }
-  export const projectState = ProjectState.getInstance();
-
 }
+export const projectState = ProjectState.getInstance();
